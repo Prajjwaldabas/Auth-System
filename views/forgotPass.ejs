@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forgot Password</title>
+
+
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-image: linear-gradient(to right, rgb(197, 10, 197) , rgb(15, 185, 227));
+}
+
+h1 {
+  text-align: center;
+  margin-top: 50px;
+  color: #fff;
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+button[type="submit"] {
+    background-image: linear-gradient(to right, rgb(197, 10, 197) , rgb(15, 185, 227));
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  opacity: 0.6;
+}
+
+p {
+  text-align: center;
+  color: #007bff;
+  margin-top: 20px;
+}
+
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+</head>
+<body>
+  <h1>Forgot Password</h1>
+  
+  <form action="/reset-password" method="POST">
+    <label for="email">Email or Username:</label>
+    <input type="text" id="email" name="email" required>
+    <button type="submit">Reset Password</button>
+  </form>
+
+
+  <script>
+    <% if (flash.success && flash.success.length > 0) {%>
+        new Noty({
+            theme: 'relax',
+            text: "<%= flash.success %>",
+            type: 'success',
+            layout: 'topRight',
+            timeout: 1500
+            
+        }).show();    
+    <%} %>
+
+    <% if (flash.error && flash.error.length > 0) {%>
+        new Noty({
+            theme: 'relax',
+            text: "<%= flash.error %>",
+            type: 'error',
+            layout: 'topRight',
+            timeout: 1500
+            
+        }).show();    
+    <%} %>
+</script
+</body>
+</html>
