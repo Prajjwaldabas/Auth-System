@@ -16,8 +16,6 @@ npm install
 Configuration
 Create a .env file in the root directory of the project and add the following variables:
 
-makefile
-
 GOOGLE_CLIENT_ID=<your_google_client_id>
 
 
