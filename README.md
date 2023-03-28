@@ -7,8 +7,7 @@ This repository contains a Node.js authentication system built with Passport Loc
 ### Installation
 Clone this repository to your local machine using the following command:
 
-git clone https://github.com/your-username/nodejs-authentication-system.git
-
+git clone https://github.com/Prajjwaldabas/Auth-System.git
 
 ### Navigate to the directory where you cloned the repository and run the following command to install the dependencies:
 
