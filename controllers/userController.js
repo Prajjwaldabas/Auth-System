@@ -45,7 +45,7 @@ module.exports.create = function(req, res){
           }
  
 
-          
+           //checking password of the user valid or not
           
           if (!user){
            
