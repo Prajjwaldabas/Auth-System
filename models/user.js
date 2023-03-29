@@ -28,16 +28,14 @@ const userSchema = new mongoose.Schema ({
     },
     phoneNo :{
      type: Number
-    },
-      
+    }, 
+    salt:String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
    
 },
     {
-        timestamps : true,
-
-      
+        timestamps : true,   
     });
 
     

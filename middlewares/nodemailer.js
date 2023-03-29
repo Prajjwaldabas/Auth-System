@@ -1,4 +1,15 @@
+require('dotenv').config();
+
 const nodemailer = require('nodemailer');
+// Require the dotenv library
+
+
+// Use the GMAIL_PASSWORD environment variable in your code
+const password = process.env.GMAIL_PASSWORD;
+// console.log(`My Google Mail Service password is ${password}`);
+
+
+
 
 function sendMail(from, to, subject, text) {
   let transporter = nodemailer.createTransport({
@@ -8,7 +19,7 @@ function sendMail(from, to, subject, text) {
     secure: false,
     auth: {
         user: 'prajjwalchaudhary29898@gmail.com',
-        pass: 'vhntgvyfsaqijzee'
+        pass: password
     }
   });
 

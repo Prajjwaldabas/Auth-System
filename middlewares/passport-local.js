@@ -2,7 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const sendMail = require('../middlewares/nodemailer');
 const User= require('../models/user')
-
+const crypto = require('crypto');
 
 //authentication using passport
 passport.use(new LocalStrategy({
@@ -12,6 +12,7 @@ passport.use(new LocalStrategy({
 function(req,email, password, done){
     // find a user and establish the identity
 
+    
     User.findOne({email: email})
   .then((user,err) => {
     if (err){
@@ -19,10 +20,13 @@ function(req,email, password, done){
         return done(err);
     }
 
-    if (!user || user.password != password){
-       req.flash('error','Invalid Username/Password');
+    const salt = user.salt;
+    const hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64, 'sha512').toString('hex');
+
+if (hash !== user.password) {
+    req.flash('error','Invalid Username/Password');
         return done(null, false);
-    }
+}
     sendMail('prajjwalchaudhary29898@gmail.com' ,`${user.email}`, 'Welcome to Stuck', `Dear ${user.firstName},
 
     Welcome to Stuck! We're excited to have you as a new member of our community.

@@ -1,6 +1,6 @@
 // importing model User
 const User= require('../models/user');
-
+const crypto = require('crypto');
 
 //rendering signup page
 module.exports.signup=function(req,res){
@@ -43,28 +43,42 @@ module.exports.create = function(req, res){
             return res.redirect('back');
 
           }
+ 
+
+          
           
           if (!user){
+           
+
+            const password= req.body.password
+            
+            const salt = crypto.randomBytes(16).toString('hex');
+            console.log("salt",salt)
+            
+            const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+            console.log(hash)
+
             await User.create({
                firstName:req.body.firstName,
                lastName:req.body.lastName,
-                email: req.body.email,
-                password: req.body.password,
-                resetPasswordToken: null,
-                resetPasswordExpires: null,
+               email: req.body.email,
+               password: hash,
+               salt: salt,
+               resetPasswordToken: null,
+               resetPasswordExpires: null,
             })
 
             req.flash('success','Account has been created')
             
-                        res.redirect('/signin');
-                        
+                        res.redirect('/signin');    
                    }
                else{
                    return res.redirect('back');
                }
         
         } catch (err) {
-            req.flash('error','user already exists');
+            req.flash('error','error in creating user exists');
+            console.log(err)
             return res.redirect('back');
         }
       }

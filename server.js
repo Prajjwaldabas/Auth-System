@@ -1,10 +1,13 @@
 const express = require('express');
 const cookieParser= require('cookie-parser');
 const app = express();
-const nodemailer= require('./middlewares/nodemailer')
-const port = 8000;
 const dotenv= require('dotenv');
+dotenv.config({path: 'config.env'})
+const port = 8000;
 
+const nodemailer= require('./middlewares/nodemailer')
+
+3
 const db = require('./database/mongoose');
 const session = require('express-session');
 const passport = require('passport');
@@ -24,7 +27,7 @@ app.use(express.static('./static'));
 
 
 
-dotenv.config({path: 'config.env'})
+
 // const PORT = process.env.PORT || 8000;
 
 
